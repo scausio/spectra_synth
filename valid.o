@@ -1,0 +1,2824 @@
+Sender: LSF System <lsfadmin@n112-ibj>
+Subject: Job 753796: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 11:33:11 2026
+Job was executed on host(s) <n112-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 11:33:11 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 11:33:11 2026
+Terminated at Thu Feb  5 11:36:05 2026
+Results reported at Thu Feb  5 11:36:05 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 1
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   40.88 sec.
+    Max Memory :                                 3790 MB
+    Average Memory :                             3040.25 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26930.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   174 sec.
+    Turnaround time :                            174 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 85)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([32, 9])
+torch.Size([32, 1, 32, 24])
+torch.Size([7, 9])
+torch.Size([7, 1, 32, 24])
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 201.1295]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           11.488177
+  MAE:            3.502081
+  R²:             -21.0594
+  Peak Error:     848.33%
+  Integral Error: 1248.35%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           -56.3%
+  MAE:            -993.9%
+  R² improvement: -1302.8 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 1 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n112-ibj>
+Subject: Job 754037: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 11:49:53 2026
+Job was executed on host(s) <n112-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 11:49:53 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 11:49:53 2026
+Terminated at Thu Feb  5 11:52:26 2026
+Results reported at Thu Feb  5 11:52:26 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 1
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   35.43 sec.
+    Max Memory :                                 4019 MB
+    Average Memory :                             3581.50 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26701.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   158 sec.
+    Turnaround time :                            153 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 85)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.5740942
+EF unscaled min  0.0
+EF unscaled max  201.12946
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 201.1295]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           11.488177
+  MAE:            3.502081
+  R²:             -21.0594
+  Peak Error:     848.33%
+  Integral Error: 1248.35%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           -56.3%
+  MAE:            -993.9%
+  R² improvement: -1302.8 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 1 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n021-ibj>
+Subject: Job 754098: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 11:55:24 2026
+Job was executed on host(s) <n021-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 11:55:25 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 11:55:25 2026
+Terminated at Thu Feb  5 11:58:15 2026
+Results reported at Thu Feb  5 11:58:15 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 1
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   40.10 sec.
+    Max Memory :                                 3806 MB
+    Average Memory :                             2915.11 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26914.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   173 sec.
+    Turnaround time :                            171 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 85)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.5740942
+EF unscaled min  0.0
+EF unscaled max  201.12946
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 201.1295]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           11.488177
+  MAE:            3.502081
+  R²:             -21.0594
+  Peak Error:     848.33%
+  Integral Error: 1248.35%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           -56.3%
+  MAE:            -993.9%
+  R² improvement: -1302.8 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 1 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n112-ibj>
+Subject: Job 754867: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 12:52:56 2026
+Job was executed on host(s) <n112-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 12:52:57 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 12:52:57 2026
+Terminated at Thu Feb  5 12:55:29 2026
+Results reported at Thu Feb  5 12:55:29 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 1
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   41.48 sec.
+    Max Memory :                                 3802 MB
+    Average Memory :                             2884.70 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26918.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   149 sec.
+    Turnaround time :                            153 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 27)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.08520623
+EF unscaled min  0.0
+EF unscaled max  29.851343
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 29.8513]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           4.910073
+  MAE:            2.776231
+  R²:             -3.0296
+  Peak Error:     97.94%
+  Integral Error: 1009.11%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           +33.2%
+  MAE:            -767.1%
+  R² improvement: +500.2 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 1 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n101-ibj>
+Subject: Job 755134: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 13:14:15 2026
+Job was executed on host(s) <n101-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 13:14:15 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 13:14:15 2026
+Terminated at Thu Feb  5 13:16:36 2026
+Results reported at Thu Feb  5 13:16:36 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 1
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   41.11 sec.
+    Max Memory :                                 3698 MB
+    Average Memory :                             2883.50 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               27022.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   146 sec.
+    Turnaround time :                            141 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 46)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.059980426
+EF unscaled min  0.0
+EF unscaled max  21.013678
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 21.0137]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           4.435364
+  MAE:            2.871626
+  R²:             -2.2881
+  Peak Error:     35.46%
+  Integral Error: 1059.49%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           +39.7%
+  MAE:            -796.9%
+  R² improvement: +574.3 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 1 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n156-ibj>
+Subject: Job 755903: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 14:01:12 2026
+Job was executed on host(s) <n156-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 14:01:13 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 14:01:13 2026
+Terminated at Thu Feb  5 14:11:19 2026
+Results reported at Thu Feb  5 14:11:19 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   56.58 sec.
+    Max Memory :                                 3719 MB
+    Average Memory :                             3481.78 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               27001.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   606 sec.
+    Turnaround time :                            607 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 68)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.06416583
+EF unscaled min  0.0
+EF unscaled max  22.480001
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 22.4800]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           4.073082
+  MAE:            2.505062
+  R²:             -1.7729
+  Peak Error:     26.51%
+  Integral Error: 906.15%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           +44.6%
+  MAE:            -682.4%
+  R² improvement: +625.9 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 10 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n021-ibj>
+Subject: Job 756833: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 14:53:01 2026
+Job was executed on host(s) <n021-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 14:53:02 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 14:53:02 2026
+Terminated at Thu Feb  5 15:03:50 2026
+Results reported at Thu Feb  5 15:03:50 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   56.66 sec.
+    Max Memory :                                 3779 MB
+    Average Memory :                             3425.73 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26941.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   648 sec.
+    Turnaround time :                            649 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 33)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.07915587
+EF unscaled min  0.0
+EF unscaled max  27.731646
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 27.7316]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           4.949449
+  MAE:            3.120776
+  R²:             -3.0945
+  Peak Error:     55.14%
+  Integral Error: 1169.10%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           +32.7%
+  MAE:            -874.8%
+  R² improvement: +493.7 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 10 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n156-ibj>
+Subject: Job 761252: <valid> in cluster <juno> Done
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 16:42:00 2026
+Job was executed on host(s) <n156-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Thu Feb  5 16:42:04 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 16:42:04 2026
+Terminated at Thu Feb  5 16:53:55 2026
+Results reported at Thu Feb  5 16:53:55 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   63.69 sec.
+    Max Memory :                                 3825 MB
+    Average Memory :                             3458.59 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               26895.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                79
+    Run time :                                   720 sec.
+    Turnaround time :                            715 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+================================================================================
+
+Output directory: inference_results
+/work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Scaler configuration loaded
+Loading test data...
+Found 27 file pairs
+Dataset FAST: 7911 samples cached
+Input dimension: 9
+Output shape: (24, 32)
+✓ Model loaded from checkpoint (epoch 68)
+✓ Model ready on cpu
+✓ Data loaded: 7911 test samples
+  Frequencies: 32 bins
+  Directions: 24 bins
+
+Running inference on test data...
+✓ Inference complete
+  Predictions shape: (7911, 1, 24, 32)
+
+Converting to physical units...
+VHM0_WW scaled min  0.0
+VHM0_WW scaled max  0.8731295
+VHM0_WW unscaled min  0.0
+VHM0_WW unscaled max  10.736
+VTM01_WW scaled min  -1.4439748e-09
+VTM01_WW scaled max  0.9510056
+VTM01_WW unscaled min  0.972
+VTM01_WW unscaled max  11.706
+VMDR_WW scaled min  0.0007778106
+VMDR_WW scaled max  0.99925
+VMDR_WW unscaled min  0.28000402
+VMDR_WW unscaled max  359.72
+VHM0_SW1 scaled min  0.0014433486
+VHM0_SW1 scaled max  0.9373346
+VHM0_SW1 unscaled min  0.015000001
+VHM0_SW1 unscaled max  7.796
+VTM01_SW1 scaled min  0.004484695
+VTM01_SW1 scaled max  0.7707145
+VTM01_SW1 unscaled min  1.075
+VTM01_SW1 unscaled max  18.673
+VMDR_SW1 scaled min  0.00016668247
+VMDR_SW1 scaled max  0.99994445
+VMDR_SW1 unscaled min  0.060004022
+VMDR_SW1 unscaled max  359.97
+VHM0_SW2 scaled min  0.0
+VHM0_SW2 scaled max  0.9816442
+VHM0_SW2 unscaled min  0.0
+VHM0_SW2 unscaled max  5.0270004
+VTM01_SW2 scaled min  -7.0963313e-10
+VTM01_SW2 scaled max  1.0
+VTM01_SW2 unscaled min  0.97200006
+VTM01_SW2 unscaled max  23.939
+VMDR_SW2 scaled min  5.5568275e-05
+VMDR_SW2 scaled max  0.9999722
+VMDR_SW2 unscaled min  0.020004023
+VMDR_SW2 unscaled max  359.98
+EF scaled min  0.0
+EF scaled max  0.8591396
+EF unscaled min  0.0
+EF unscaled max  300.99292
+EF scaled min  0.0
+EF scaled max  0.06416583
+EF unscaled min  0.0
+EF unscaled max  22.480001
+  X_test range: [0.0000, 359.9800]
+  Y_test range: [0.0000, 300.9929]
+  Y_pred range: [0.0000, 22.4800]
+
+Computing Yamaguchi approximations...
+  X_test range for Yamaguchi: [0.0000, 359.9800]
+  First sample Hs: 0.3880 m, Tp: 2.4700 s, Dir: 152.0800 deg
+  Processed 100/7911
+  Processed 200/7911
+  Processed 300/7911
+  Processed 400/7911
+  Processed 500/7911
+  Processed 600/7911
+  Processed 700/7911
+  Processed 800/7911
+  Processed 900/7911
+  Processed 1000/7911
+  Processed 1100/7911
+  Processed 1200/7911
+  Processed 1300/7911
+  Processed 1400/7911
+  Processed 1500/7911
+  Processed 1600/7911
+  Processed 1700/7911
+  Processed 1800/7911
+  Processed 1900/7911
+  Processed 2000/7911
+  Processed 2100/7911
+  Processed 2200/7911
+  Processed 2300/7911
+  Processed 2400/7911
+  Processed 2500/7911
+  Processed 2600/7911
+  Processed 2700/7911
+  Processed 2800/7911
+  Processed 2900/7911
+  Processed 3000/7911
+  Processed 3100/7911
+  Processed 3200/7911
+  Processed 3300/7911
+  Processed 3400/7911
+  Processed 3500/7911
+  Processed 3600/7911
+  Processed 3700/7911
+  Processed 3800/7911
+  Processed 3900/7911
+  Processed 4000/7911
+  Processed 4100/7911
+  Processed 4200/7911
+  Processed 4300/7911
+  Processed 4400/7911
+  Processed 4500/7911
+  Processed 4600/7911
+  Processed 4700/7911
+  Processed 4800/7911
+  Processed 4900/7911
+  Processed 5000/7911
+  Processed 5100/7911
+  Processed 5200/7911
+  Processed 5300/7911
+  Processed 5400/7911
+  Processed 5500/7911
+  Processed 5600/7911
+  Processed 5700/7911
+  Processed 5800/7911
+  Processed 5900/7911
+  Processed 6000/7911
+  Processed 6100/7911
+  Processed 6200/7911
+  Processed 6300/7911
+  Processed 6400/7911
+  Processed 6500/7911
+  Processed 6600/7911
+  Processed 6700/7911
+  Processed 6800/7911
+  Processed 6900/7911
+  Processed 7000/7911
+  Processed 7100/7911
+  Processed 7200/7911
+  Processed 7300/7911
+  Processed 7400/7911
+  Processed 7500/7911
+  Processed 7600/7911
+  Processed 7700/7911
+  Processed 7800/7911
+  Processed 7900/7911
+✓ Yamaguchi spectra computed
+
+Computing metrics...
+(7911, 24, 32) (7911, 24, 32) (7911, 24, 32)
+
+================================================================================
+QUANTITATIVE METRICS
+================================================================================
+
+Model Performance:
+  RMSE:           4.073082
+  MAE:            2.505062
+  R²:             -1.7729
+  Peak Error:     26.51%
+  Integral Error: 906.15%
+
+Yamaguchi (JONSWAP) Performance:
+  RMSE:           7.350825
+  MAE:            0.320156
+  R²:             -8.0316
+  Peak Error:     39.21%
+  Integral Error: 50.91%
+
+Improvement over Yamaguchi:
+  RMSE:           +44.6%
+  MAE:            -682.4%
+  R² improvement: +625.9 points
+
+================================================================================
+
+✓ Metrics saved to: inference_results/metrics_comparison.txt
+✓ Arrays saved to: inference_results
+
+Generating visualizations for 10 samples...
+✓ Visualizations saved to: inference_results
+
+Generating summary plots...
+✓ Summary plots saved
+
+================================================================================
+INFERENCE COMPLETE!
+================================================================================
+Results saved in: inference_results
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n142-ibj>
+Subject: Job 98670: <valid> in cluster <juno> Exited
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 13:51:48 2026
+Job was executed on host(s) <n142-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Tue Feb 10 13:51:49 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 13:51:49 2026
+Terminated at Tue Feb 10 14:00:13 2026
+Results reported at Tue Feb 10 14:00:13 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   461.34 sec.
+    Max Memory :                                 6937 MB
+    Average Memory :                             3282.83 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               23783.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                78
+    Run time :                                   501 sec.
+    Turnaround time :                            505 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+Updated for new data structure and reader
+================================================================================
+
+Output directory: inference_results
+
+Loading scaler from: /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json
+✓ Scaler loaded
+
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Configuration loaded from /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/training_history.json
+✓ Checkpoint loaded (epoch 68)
+Preparing dataset...
+  Found 8 file pairs
+Dataset FAST: 233952 samples cached
+  Input dimension: 9
+  Output shape: (32, 24)
+  Frequencies: 32 bins, range [0.0418, 0.8017] Hz
+  Directions: 24 bins, range [8, 352] deg
+✓ Dataset ready: 233952 samples
+
+Reconstructing model from checkpoint...
+  Model: unet
+  Input dim: 9
+  Output shape: (32, 24)
+✓ Model reconstructed
+
+Running inference with batch_size=32...
+✓ Inference complete
+  X shape: (233952, 9)
+  Y_true shape: (233952, 1, 32, 24)
+  Y_pred shape: (233952, 1, 32, 24)
+
+After squeeze - Y_true: (233952, 32, 24), Y_pred: (233952, 32, 24)
+Converting to physical units...
+  Y_true transposed to (233952, 24, 32)
+  X_test range: [0.0000, 359.9900]
+  Y_true range: [0.0000e+00, 1.2559e+02]
+  Y_pred range: [0.0000e+00, 8.9293e+01]
+
+Computing Yamaguchi (JONSWAP) approximations...
+✓ Yamaguchi spectra computed
+Computing metrics...
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n090-ibj>
+Subject: Job 113742: <valid> in cluster <juno> Exited
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 17:43:11 2026
+Job was executed on host(s) <n090-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Tue Feb 10 17:43:11 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 17:43:11 2026
+Terminated at Tue Feb 10 17:43:17 2026
+Results reported at Tue Feb 10 17:43:17 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.18 sec.
+    Max Memory :                                 12 MB
+    Average Memory :                             12.00 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               30708.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   8 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n026-ibj>
+Subject: Job 113767: <valid> in cluster <juno> Exited
+
+Job <valid> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 17:44:13 2026
+Job was executed on host(s) <n026-ibj>, in queue <p_short>, as user <sc33616> in cluster <juno> at Tue Feb 10 17:44:13 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 17:44:13 2026
+Terminated at Tue Feb 10 17:52:37 2026
+Results reported at Tue Feb 10 17:52:37 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 1
+#BSUB -q p_short
+#BSUB -P 0710
+#BSUB -J valid
+#BSUB -R "rusage[mem=30G]"
+#BSUB -e valid.e
+#BSUB -o valid.o
+
+
+python inference_and_compare.py \
+  --model_path /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt \
+  --stats_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid \
+  --spc_dir /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/spcs_grid \
+  --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
+  --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
+  --model_name unet \
+  --batch_size 32 \
+  --compute_yamaguchi \
+  --output_dir inference_results \
+  --num_samples 10
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   459.50 sec.
+    Max Memory :                                 13645 MB
+    Average Memory :                             4013.71 MB
+    Total Requested Memory :                     30720.00 MB
+    Delta Memory :                               17075.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                78
+    Run time :                                   529 sec.
+    Turnaround time :                            504 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+WAVE SPECTRA RECONSTRUCTION - INFERENCE AND COMPARISON
+Updated for new data structure and reader
+================================================================================
+
+Output directory: inference_results
+
+Loading scaler from: /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json
+✓ Scaler loaded
+
+Loading model from: /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/best_model.pt
+✓ Configuration loaded from /work/cmcc/sc33616/work/spectra_synth/output_unet_deep/training_history.json
+✓ Checkpoint loaded (epoch 68)
+Preparing dataset...
+  Found 8 file pairs
+Dataset FAST: 233952 samples cached
+  Input dimension: 9
+  Output shape: (32, 24)
+  Frequencies: 32 bins, range [0.0418, 0.8017] Hz
+  Directions: 24 bins, range [8, 352] deg
+✓ Dataset ready: 233952 samples
+
+Reconstructing model from checkpoint...
+  Model: unet
+  Input dim: 9
+  Output shape: (32, 24)
+✓ Model reconstructed
+
+Running inference with batch_size=32...
+✓ Inference complete
+  X shape: (233952, 9)
+  Y_true shape: (233952, 1, 32, 24)
+  Y_pred shape: (233952, 1, 32, 24)
+
+After squeeze - Y_true: (233952, 32, 24), Y_pred: (233952, 32, 24)
+Converting to physical units...
+
+Shape alignment:
+  Y_true: (233952, 32, 24), Y_pred: (233952, 32, 24)
+  Expected: (N, 24, 32)
+  Y_true transposed to (233952, 24, 32)
+  Y_pred transposed to (233952, 24, 32)
+✓ Shapes aligned: (233952, 24, 32)
+
+Value ranges:
+  X_test range: [0.0000, 359.9900]
+  Y_true range: [0.0000e+00, 1.2559e+02]
+  Y_pred range: [0.0000e+00, 8.9293e+01]
+
+Computing Yamaguchi (JONSWAP) approximations...
+✓ Yamaguchi spectra computed
+Computing metrics...
+
+
+PS:
+
+Read file <valid.e> for stderr output of this job.
+

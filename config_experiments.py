@@ -48,8 +48,8 @@ EXPERIMENTS = {
             'num_blocks': 3
         },
         'learning_rate': 1e-3,
-        'batch_size': 32,
-        'epochs': 100,
+        'batch_size': 8,
+        'epochs': 300,
         'description': 'U-Net for spatial reconstruction'
     },
 
@@ -104,19 +104,73 @@ EXPERIMENTS = {
         'batch_size': 32,
         'epochs': 120,
         'description': 'VAE'
+    },
+    'unet_sparse_optimized': {
+        'model_name': 'unet',
+        'model_params': {
+            'hidden_dim': 512,
+            'channels': [64, 128, 256, 512],
+            'num_blocks': 4,
+            'dropout': 0.1
+        },
+        'learning_rate': 5e-4,
+        'batch_size': 32,
+        'epochs': 300,
+        'loss_function': 'msle_constraint_weighted',
+        'alpha': 0.15,
+        'beta': 0.15,
+        'gamma': 0.02,
+        'nonzero_weight': 20.0,
+        'zero_weight': 1.0,
+        'description': 'U-Net optimized for sparse spectral data'
+    },
+
+    'unet_log_scale': {
+        'model_name': 'unet',
+        'model_params': {
+            'hidden_dim': 512,
+            'channels': [64, 128, 256, 512],
+            'num_blocks': 4,
+            'dropout': 0.1
+        },
+        'learning_rate': 8e-4,
+        'batch_size': 32,
+        'epochs': 300,
+        'loss_function': 'log_scale',
+        'description': 'U-Net with pure log-scale loss',
+        'early_stopping_patience': 100,
+        'decimate_input': 10,
+        'auto_resume': True,
+    },
+    'unet_msle': {
+        'model_name': 'unet',
+        'model_params': {
+            'hidden_dim': 512,
+            'channels': [64, 128, 256, 512],
+            'num_blocks': 4,
+            'dropout': 0.1
+        },
+        'learning_rate': 8e-4,
+        'batch_size': 8,
+        'epochs': 300,
+        'loss_function': 'msle',
+        'description': 'U-Net with pure log-scale loss',
+        'early_stopping_patience': 1000,
+        'decimate_input': 10,
+        'auto_resume': False,
     }
+
 }
 
 # Default configuration (used when no experiment is specified)
 DEFAULT_CONFIG = {
     # Training parameters
-    'outdir': 'output_improved',
-    'batch_size': 32,
-    'epochs': 100,
+    'outdir': 'output_unet',
+    'batch_size': 8,
+    'epochs': 300,
     'learning_rate': 1e-3,
     'weight_decay': 1e-5,
-    'checkpoint_interval': 1,
-    'early_stopping_patience': 100,
+    'checkpoint_interval': 5,
     'init_epoch': 0,
     'auto_resume': True,
 

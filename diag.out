@@ -1,0 +1,114 @@
+Sender: LSF System <lsfadmin@n001-ibj>
+Subject: Job 114419: <python diagnose.py> in cluster <juno> Exited
+
+Job <python diagnose.py> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 18:08:06 2026
+Job was executed on host(s) <n001-ibj>, in queue <s_short>, as user <sc33616> in cluster <juno> at Tue Feb 10 18:08:06 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 18:08:06 2026
+Terminated at Tue Feb 10 18:08:16 2026
+Results reported at Tue Feb 10 18:08:16 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python diagnose.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.80 sec.
+    Max Memory :                                 48 MB
+    Average Memory :                             48.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              3
+    Max Threads :                                4
+    Run time :                                   14 sec.
+    Turnaround time :                            10 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <diag.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n001-ibj>
+Subject: Job 114435: <python diagnose.py> in cluster <juno> Done
+
+Job <python diagnose.py> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 18:09:10 2026
+Job was executed on host(s) <n001-ibj>, in queue <s_short>, as user <sc33616> in cluster <juno> at Tue Feb 10 18:09:17 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 18:09:17 2026
+Terminated at Tue Feb 10 18:10:30 2026
+Results reported at Tue Feb 10 18:10:30 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python diagnose.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   15.48 sec.
+    Max Memory :                                 1896 MB
+    Average Memory :                             847.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              3
+    Max Threads :                                76
+    Run time :                                   88 sec.
+    Turnaround time :                            80 sec.
+
+The output (if any) follows:
+
+======================================================================
+TRAINING DIAGNOSTICS
+======================================================================
+
+1. Checking scalers...
+   EF scale: 2.854352e-03
+   EF offset: -0.000000e+00
+
+2. Loading training data...
+Dataset FAST: 29250 samples cached
+   Found 29250 samples
+
+3. Checking data quality...
+   X shape: (100, 9)
+   X range: [-0.0000, 0.9998]
+   X mean: 0.2533
+   X has NaN: False
+   Y shape: (100, 1, 32, 24)
+   Y range: [0.000000e+00, 1.663182e-02]
+   Y mean: 6.292074e-05
+   Y has NaN: False
+
+4. Creating visualizations...
+   Saved: training_samples_diagnostic.png
+
+5. Spectral statistics:
+   Peak energy range: [3.0715e-05, 1.6632e-02]
+   Total energy range: [7.4720e-04, 1.6338e-01]
+
+6. Recommendations:
+
+======================================================================
+
+
+PS:
+
+Read file <diag.err> for stderr output of this job.
+

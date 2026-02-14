@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/work/cmcc/sc33616/work/spectra_synth/diagnose.py", line 8, in <module>
+    from reader import Reader, build_file_pairs, CreateDataset
+  File "/work/cmcc/sc33616/work/spectra_synth/reader.py", line 5, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'

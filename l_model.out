@@ -1,0 +1,187 @@
+Sender: LSF System <lsfadmin@n168-ibj>
+Subject: Job 754448: <SS_1gpu> in cluster <juno> Done
+
+Job <SS_1gpu> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 12:22:18 2026
+Job was executed on host(s) <2*n168-ibj>, in queue <g_medium>, as user <sc33616> in cluster <juno> at Thu Feb  5 12:22:19 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 12:22:19 2026
+Terminated at Thu Feb  5 13:55:06 2026
+Results reported at Thu Feb  5 13:55:06 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 2
+#BSUB -q g_medium
+#BSUB -P R000
+#BSUB -J SS_1gpu
+#BSUB -o ./l_model.out
+#BSUB -e ./l_model.err
+#BSUB -gpu "num=1"
+#BSUB -R "rusage[mem=50G]"
+#python run_experiments.py --experiment hybrid_balanced
+python run_experiments.py --experiment unet_deep
+#python run_experiments.py --experiment autoencoder
+#python gpu_test.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2528.00 sec.
+    Max Memory :                                 4812 MB
+    Average Memory :                             4712.05 MB
+    Total Requested Memory :                     51200.00 MB
+    Delta Memory :                               46388.00 MB
+    Max Swap :                                   -
+    Max Processes :                              8
+    Max Threads :                                205
+    Run time :                                   5567 sec.
+    Turnaround time :                            5568 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+Running Experiment: unet_deep
+================================================================================
+
+Using cuda device
+Dataset FAST: 14625 samples cached
+Dataset FAST: 2925 samples cached
+Dataset: 14625 samples | Batch size: 32 | Batches/epoch: 458
+unet
+
+✓ Experiment unet_deep completed successfully!
+
+
+PS:
+
+Read file <./l_model.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n168-ibj>
+Subject: Job 756287: <SS_1gpu> in cluster <juno> Done
+
+Job <SS_1gpu> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Thu Feb  5 14:16:00 2026
+Job was executed on host(s) <2*n168-ibj>, in queue <g_medium>, as user <sc33616> in cluster <juno> at Thu Feb  5 14:16:01 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Thu Feb  5 14:16:01 2026
+Terminated at Thu Feb  5 16:05:29 2026
+Results reported at Thu Feb  5 16:05:29 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 2
+#BSUB -q g_medium
+#BSUB -P R000
+#BSUB -J SS_1gpu
+#BSUB -o ./l_model.out
+#BSUB -e ./l_model.err
+#BSUB -gpu "num=1"
+#BSUB -R "rusage[mem=50G]"
+#python run_experiments.py --experiment hybrid_balanced
+python run_experiments.py --experiment unet_deep
+#python run_experiments.py --experiment autoencoder
+#python gpu_test.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2908.00 sec.
+    Max Memory :                                 4910 MB
+    Average Memory :                             4767.83 MB
+    Total Requested Memory :                     51200.00 MB
+    Delta Memory :                               46290.00 MB
+    Max Swap :                                   -
+    Max Processes :                              8
+    Max Threads :                                205
+    Run time :                                   6567 sec.
+    Turnaround time :                            6569 sec.
+
+The output (if any) follows:
+
+
+================================================================================
+Running Experiment: unet_deep
+================================================================================
+
+Using cuda device
+Dataset FAST: 14625 samples cached
+Dataset FAST: 2925 samples cached
+Dataset: 14625 samples | Batch size: 32 | Batches/epoch: 458
+unet
+
+✓ Experiment unet_deep completed successfully!
+
+
+PS:
+
+Read file <./l_model.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@n170-ibj>
+Subject: Job 115291: <SS_1gpu> in cluster <juno> Exited
+
+Job <SS_1gpu> was submitted from host <login2-ibj> by user <sc33616> in cluster <juno> at Tue Feb 10 18:56:42 2026
+Job was executed on host(s) <2*n170-ibj>, in queue <g_medium>, as user <sc33616> in cluster <juno> at Tue Feb 10 18:56:42 2026
+</users_home/cmcc/sc33616> was used as the home directory.
+</work/cmcc/sc33616/work/spectra_synth> was used as the working directory.
+Started at Tue Feb 10 18:56:42 2026
+Terminated at Tue Feb 10 18:57:02 2026
+Results reported at Tue Feb 10 18:57:02 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -n 2
+#BSUB -q g_medium
+#BSUB -P R000
+#BSUB -J SS_1gpu
+#BSUB -o ./l_model.out
+#BSUB -e ./l_model.err
+#BSUB -gpu "num=1"
+#BSUB -R "rusage[mem=50G]"
+#python train.py
+#python run_experiments.py --experiment hybrid_balanced
+#python run_experiments.py --experiment unet_deep
+python run_experiments.py --experiment unet_sparse_optimized
+#train.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   11.13 sec.
+    Max Memory :                                 201 MB
+    Average Memory :                             154.60 MB
+    Total Requested Memory :                     51200.00 MB
+    Delta Memory :                               50999.00 MB
+    Max Swap :                                   8 MB
+    Max Processes :                              4
+    Max Threads :                                68
+    Run time :                                   22 sec.
+    Turnaround time :                            20 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <./l_model.err> for stderr output of this job.
+

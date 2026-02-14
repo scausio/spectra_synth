@@ -1,0 +1,9 @@
+brotlipy==0.7.0
+lockfile==0.12.2
+mkl-service==2.4.0
+Pillow==9.4.0
+python-editor==1.0.4
+torch==2.0.1
+torchaudio==2.0.2
+torchvision==0.15.2
+triton==2.0.0

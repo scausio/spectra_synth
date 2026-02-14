@@ -305,6 +305,20 @@ def main(config_dict=None):
             beta=config.get('beta', 0.0001),
             gamma=config.get('gamma', 0)
         )
+    elif config['loss_function'] == 'msle_constraint_weighted':
+        # NEW: For sparse spectral data
+        from loss_functions import MSLEConstraintWeighted
+        criterion = MSLEConstraintWeighted(
+            alpha=config.get('alpha', 0.15),
+            beta=config.get('beta', 0.15),
+            gamma=config.get('gamma', 0.02),
+            nonzero_weight=config.get('nonzero_weight', 20.0),
+            zero_weight=config.get('zero_weight', 1.0)
+        )
+    elif config['loss_function'] == 'log_scale':
+        # NEW: Simple log-scale for sparse data
+        from loss_functions import LogScaleLoss
+        criterion = LogScaleLoss()
     else:
         criterion = MSLELoss()
     #Initialize model

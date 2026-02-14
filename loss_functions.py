@@ -497,3 +497,64 @@ def get_loss_function(loss_name, **kwargs):
     
     return losses[loss_name](**kwargs)
 
+
+class MSLEConstraintWeighted(nn.Module):
+    """
+    MSLE with weighting for sparse data - RECOMMENDED for your problem
+
+    Args:
+        alpha: Peak preservation weight (default: 0.15)
+        beta: Energy conservation weight (default: 0.15)
+        gamma: Weighted MSE weight (default: 0.02)
+        nonzero_weight: Weight for non-zero values (default: 20.0)
+        zero_weight: Weight for zero values (default: 1.0)
+    """
+
+    def __init__(self, alpha=0.15, beta=0.15, gamma=0.02,
+                 nonzero_weight=20.0, zero_weight=1.0, epsilon=1e-8):
+        super().__init__()
+        self.alpha = alpha
+        self.beta = beta
+        self.gamma = gamma
+        self.nonzero_weight = nonzero_weight
+        self.zero_weight = zero_weight
+        self.epsilon = epsilon
+
+    def forward(self, y_pred, y_true):
+        # 1. MSLE (handles small values)
+        log_pred = torch.log(y_pred + self.epsilon)
+        log_true = torch.log(y_true + self.epsilon)
+        msle_loss = F.mse_loss(log_pred, log_true)
+
+        # 2. Peak preservation
+        pred_max = y_pred.view(y_pred.size(0), -1).max(dim=1)[0]
+        true_max = y_true.view(y_true.size(0), -1).max(dim=1)[0]
+        peak_loss = F.mse_loss(pred_max, true_max)
+
+        # 3. Energy conservation
+        pred_sum = y_pred.view(y_pred.size(0), -1).sum(dim=1)
+        true_sum = y_true.view(y_true.size(0), -1).sum(dim=1)
+        energy_loss = F.mse_loss(pred_sum, true_sum)
+
+        # 4. Weighted MSE (20× focus on non-zero values)
+        nonzero_mask = (y_true > self.epsilon).float()
+        weights = nonzero_mask * self.nonzero_weight + (1 - nonzero_mask) * self.zero_weight
+        weighted_mse = (weights * (y_pred - y_true) ** 2).mean()
+
+        # Combine
+        total_loss = msle_loss + self.alpha * peak_loss + self.beta * energy_loss + self.gamma * weighted_mse
+
+        return total_loss
+
+
+class LogScaleLoss(nn.Module):
+    """Pure log-scale MSE - simpler alternative for sparse data"""
+
+    def __init__(self, epsilon=1e-8):
+        super().__init__()
+        self.epsilon = epsilon
+
+    def forward(self, y_pred, y_true):
+        log_pred = torch.log(y_pred + self.epsilon)
+        log_true = torch.log(y_true + self.epsilon)
+        return F.mse_loss(log_pred, log_true)

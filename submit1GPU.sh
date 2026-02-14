@@ -9,6 +9,6 @@
 #BSUB -R "rusage[mem=50G]"
 #python train.py
 #python run_experiments.py --experiment hybrid_balanced
-python run_experiments.py --experiment unet_deep
-
+#python run_experiments.py --experiment unet_deep
+python run_experiments.py --experiment unet_msle #unet_sparse_optimized
 #train.py

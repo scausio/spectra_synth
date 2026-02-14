@@ -165,121 +165,254 @@ class SpectralTransformer(BaseSpectralModel):
 # ============================================================================
 # 3. U-Net Style Architecture
 # ============================================================================
-class SpectralUNet(BaseSpectralModel):
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class UNetBlock(nn.Module):
+    """Enhanced U-Net block with dropout and batch norm options"""
+
+    def __init__(self, in_channels, out_channels, dropout=0.0, use_batchnorm=True):
+        super().__init__()
+        layers = []
+
+        # First conv
+        layers.append(nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1))
+        if use_batchnorm:
+            layers.append(nn.BatchNorm2d(out_channels))
+        layers.append(nn.ReLU(inplace=True))
+
+        if dropout > 0:
+            layers.append(nn.Dropout2d(dropout))
+
+        # Second conv
+        layers.append(nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1))
+        if use_batchnorm:
+            layers.append(nn.BatchNorm2d(out_channels))
+        layers.append(nn.ReLU(inplace=True))
+
+        self.block = nn.Sequential(*layers)
+
+    def forward(self, x):
+        return self.block(x)
+
+
+class SpatialAttention(nn.Module):
+    """Spatial attention for bottleneck"""
+
+    def __init__(self, in_channels):
+        super().__init__()
+        self.conv = nn.Conv2d(2, 1, kernel_size=7, padding=3)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        # Channel-wise statistics
+        avg_out = torch.mean(x, dim=1, keepdim=True)
+        max_out, _ = torch.max(x, dim=1, keepdim=True)
+        attention = torch.cat([avg_out, max_out], dim=1)
+        attention = self.conv(attention)
+        attention = self.sigmoid(attention)
+        return x * attention
+
+
+class SpectralUNet(nn.Module):
     """
-    UNet completa per ricostruzione di spettri 2D (k, theta)
-    Input  : vettore di statistiche [B, input_dim]
-    Output : spettro EF [B, 1, Nk, Ntheta]
+    U-Net for 2D Wave Spectra Reconstruction
+
+    Parameters:
+    -----------
+    input_dim : int
+        Number of input features (wind-wave parameters)
+    reshape_size : tuple
+        Output shape (k_bins, theta_bins)
+    hidden_dim : int
+        Base number of channels (default: 128)
+    num_blocks : int
+        Number of encoder/decoder blocks (default: 4)
+    channels : list, optional
+        Custom channel progression [c1, c2, c3, c4, ...]
+        If None, uses [hidden_dim, hidden_dim*2, hidden_dim*4, ...]
+    dropout : float
+        Dropout rate (default: 0.1)
+    use_batchnorm : bool
+        Use batch normalization (default: True)
+    use_attention : bool
+        Add spatial attention in bottleneck (default: True)
+    skip_connection_mode : str
+        'concat' (default) or 'add' for skip connections
+
+    Example:
+    --------
+    # Deep model with custom channels
+    model = SpectralUNet(
+        input_dim=9,
+        reshape_size=(32, 24),
+        hidden_dim=512,
+        num_blocks=4,
+        channels=[64, 128, 256, 512],
+        dropout=0.1,
+        use_attention=True
+    )
     """
 
     def __init__(
-        self,
-        input_dim,
-        reshape_size,            # (Nk, Ntheta)
-        hidden_dim=256,
-        channels=(16, 32, 64, 128),num_blocks=3,
+            self,
+            input_dim,
+            reshape_size,
+            hidden_dim=128,
+            num_blocks=4,
+            channels=None,
+            dropout=0.1,
+            use_batchnorm=True,
+            use_attention=True,
+            skip_connection_mode='concat'
     ):
-        super().__init__(input_dim, reshape_size)
+        super().__init__()
 
-        self.Nk, self.Ntheta = reshape_size
+        self.input_dim = input_dim
+        self.reshape_size = reshape_size
+        self.num_blocks = num_blocks
+        self.skip_connection_mode = skip_connection_mode
 
-        # ================= Input projection =================
-        self.input_proj = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.Linear(hidden_dim, self.Nk * self.Ntheta),
+        # Determine channel progression
+        if channels is None:
+            # Default: [hidden_dim, hidden_dim*2, hidden_dim*4, ...]
+            self.channels = [hidden_dim * (2 ** i) for i in range(num_blocks)]
+        else:
+            if len(channels) < num_blocks:
+                raise ValueError(f"channels list must have at least {num_blocks} elements")
+            self.channels = channels[:num_blocks]
+
+        # Initial projection: input_dim -> reshape_size with first channel
+        initial_features = reshape_size[0] * reshape_size[1]
+        self.fc_initial = nn.Sequential(
+            nn.Linear(input_dim, initial_features * 2),
+            nn.ReLU(inplace=True),
+            nn.Dropout(dropout) if dropout > 0 else nn.Identity(),
+            nn.Linear(initial_features * 2, initial_features)
         )
 
-        # ================= Encoder =================
-        self.enc_blocks = nn.ModuleList()
-        self.pools = nn.ModuleList()
+        # Input conv: 1 channel -> first encoder channel
+        self.input_conv = nn.Conv2d(1, self.channels[0], kernel_size=3, padding=1)
 
-        in_ch = 1
-        for ch in channels:
-            self.enc_blocks.append(self._conv_block(in_ch, ch))
-            self.pools.append(nn.MaxPool2d(2))
-            in_ch = ch
+        # Encoder blocks
+        self.encoder_blocks = nn.ModuleList()
+        self.encoder_pools = nn.ModuleList()
 
-        # ================= Bottleneck =================
-        self.bottleneck = self._conv_block(channels[-1], channels[-1] * 2)
+        for i in range(num_blocks):
+            in_ch = self.channels[i] if i == 0 else self.channels[i - 1]
+            out_ch = self.channels[i]
 
-        # ================= Decoder =================
-        self.upconvs = nn.ModuleList()
-        self.dec_blocks = nn.ModuleList()
-
-        in_ch = channels[-1] * 2
-        for ch in reversed(channels):
-            self.upconvs.append(
-                nn.ConvTranspose2d(in_ch, ch, kernel_size=2, stride=2)
+            self.encoder_blocks.append(
+                UNetBlock(in_ch, out_ch, dropout, use_batchnorm)
             )
-            self.dec_blocks.append(
-                self._conv_block(ch * 2, ch)
+
+            if i < num_blocks - 1:  # No pooling after last encoder
+                self.encoder_pools.append(nn.MaxPool2d(2))
+
+        # Bottleneck with optional attention
+        self.bottleneck = UNetBlock(
+            self.channels[-1],
+            self.channels[-1] * 2,
+            dropout,
+            use_batchnorm
+        )
+
+        if use_attention:
+            self.attention = SpatialAttention(self.channels[-1] * 2)
+        else:
+            self.attention = None
+
+        # Decoder blocks
+        self.decoder_upsamples = nn.ModuleList()
+        self.decoder_blocks = nn.ModuleList()
+
+        for i in range(num_blocks - 1, -1, -1):
+            # Upsample
+            in_ch = self.channels[-1] * 2 if i == num_blocks - 1 else self.channels[i + 1]
+            out_ch = self.channels[i]
+
+            self.decoder_upsamples.append(
+                nn.ConvTranspose2d(in_ch, out_ch, kernel_size=2, stride=2)
             )
-            in_ch = ch
 
-        # ================= Output =================
-        self.final_conv = nn.Sequential(
-            nn.Conv2d(channels[0], 1, kernel_size=1),
-            nn.ReLU()   # EF >= 0
-        )
+            # Decoder block
+            if skip_connection_mode == 'concat':
+                decoder_in_ch = out_ch * 2  # Concatenated skip connection
+            else:  # 'add'
+                decoder_in_ch = out_ch
 
-    # ------------------------------------------------------
-    def _conv_block(self, in_ch, out_ch):
-        return nn.Sequential(
-            nn.Conv2d(in_ch, out_ch, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_ch),
-            nn.LeakyReLU(0.2, inplace=True),
+            self.decoder_blocks.append(
+                UNetBlock(decoder_in_ch, out_ch, dropout, use_batchnorm)
+            )
 
-            nn.Conv2d(out_ch, out_ch, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_ch),
-            nn.LeakyReLU(0.2, inplace=True),
-        )
+        # Output conv: first channel -> 1 channel
+        self.output_conv = nn.Conv2d(self.channels[0], 1, kernel_size=1)
 
-    # ------------------------------------------------------
     def forward(self, x):
-        B = x.size(0)
+        # Initial projection: (batch, input_dim) -> (batch, k*theta)
+        x = self.fc_initial(x)
 
-        # ---- Project input to 2D ----
-        x = self.input_proj(x)
-        x = x.view(B, 1, self.Nk, self.Ntheta)
+        # Reshape to 2D: (batch, 1, k, theta)
+        x = x.view(-1, 1, self.reshape_size[0], self.reshape_size[1])
 
-        # ---- Encoder ----
-        skips = []
-        for enc, pool in zip(self.enc_blocks, self.pools):
-            x = enc(x)
-            skips.append(x)
-            x = pool(x)
+        # Input conv
+        x = self.input_conv(x)
 
-        # ---- Bottleneck ----
+        # Encoder with skip connections
+        skip_connections = []
+
+        for i in range(self.num_blocks):
+            x = self.encoder_blocks[i](x)
+            skip_connections.append(x)          # ✅ Save ALL encoder outputs
+            
+            if i < self.num_blocks - 1:
+                x = self.encoder_pools[i](x)
+
+        # Bottleneck
         x = self.bottleneck(x)
 
-        # ---- Decoder ----
-        skips = skips[::-1]
-        for up, dec, skip in zip(self.upconvs, self.dec_blocks, skips):
-            x = up(x)
-            x = self._match_size(x, skip)
-            x = torch.cat([x, skip], dim=1)
-            x = dec(x)
-
-        # ---- Output ----
-        x = self.final_conv(x)
+        if self.attention is not None:
+            x = self.attention(x)
+            
+        # Decoder with skip connections
+        for i in range(self.num_blocks):  # ✅ Changed: was num_blocks-1
+            # Upsample
+            x = self.decoder_upsamples[i](x)
+        
+            # Get corresponding skip connection
+            skip = skip_connections[-(i + 1)]
+        
+            # Handle size mismatch
+            if x.shape != skip.shape:
+                x = F.interpolate(x, size=skip.shape[2:], mode='bilinear', align_corners=False)
+        
+            # Combine with skip connection
+            if self.skip_connection_mode == 'concat':
+                x = torch.cat([x, skip], dim=1)
+            else:  # 'add'
+                x = x + skip
+        
+            # Decoder block
+            x = self.decoder_blocks[i](x)
+        
+        # ✅ Final size adjustment (if needed)
+        if x.shape[2:] != self.reshape_size:
+            x = F.interpolate(x, size=self.reshape_size, mode='bilinear', align_corners=False)
+        
+        # Output conv
+        x = self.output_conv(x)
+        
+        # Apply ReLU to ensure non-negative spectrum
+        x = F.relu(x)
+        
         return x
+        
 
-    # ------------------------------------------------------
-    def _match_size(self, x, ref):
-        """Crop or pad x to match ref spatial size"""
-        dh = ref.size(2) - x.size(2)
-        dw = ref.size(3) - x.size(3)
 
-        if dh != 0 or dw != 0:
-            x = F.pad(
-                x,
-                [
-                    dw // 2, dw - dw // 2,
-                    dh // 2, dh - dh // 2
-                ]
-            )
-        return x
+
 # ============================================================================
 # 4. Enhanced ResNet-Style Architecture
 # ============================================================================
@@ -505,19 +638,6 @@ class SelfAttention(nn.Module):
         return out
 
 
-class SpatialAttention(nn.Module):
-    """Spatial attention for 2D feature maps"""
-    
-    def __init__(self):
-        super(SpatialAttention, self).__init__()
-        self.conv = nn.Conv2d(2, 1, 7, padding=3)
-    
-    def forward(self, x):
-        max_pool = torch.max(x, dim=1, keepdim=True)[0]
-        avg_pool = torch.mean(x, dim=1, keepdim=True)
-        pool = torch.cat([max_pool, avg_pool], dim=1)
-        attention = torch.sigmoid(self.conv(pool))
-        return x * attention
 
 
 class ResidualBlock(nn.Module):
@@ -578,28 +698,6 @@ class ImprovedResidualBlock(nn.Module):
         
         return self.activation(out + identity)
 
-
-class UNetBlock(nn.Module):
-    """Basic U-Net convolutional block"""
-    
-    def __init__(self, in_channels, out_channels):
-        super(UNetBlock, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels, out_channels, 3, padding=1)
-        self.bn1 = nn.BatchNorm2d(out_channels)
-        self.conv2 = nn.Conv2d(out_channels, out_channels, 3, padding=1)
-        self.bn2 = nn.BatchNorm2d(out_channels)
-        self.activation = nn.LeakyReLU(0.2)
-    
-    def forward(self, x):
-        x = self.conv1(x)
-        x = self.bn1(x)
-        x = self.activation(x)
-        
-        x = self.conv2(x)
-        x = self.bn2(x)
-        x = self.activation(x)
-        
-        return x
 
 
 class PositionalEncoding(nn.Module):
