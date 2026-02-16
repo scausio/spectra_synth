@@ -281,9 +281,9 @@ def plot_comparison(idx, y_true, y_pred, y_yamaguchi, X_test, freqs, dires,
     freq_pred = y_pred.sum(axis=0)
     freq_yam = y_yamaguchi.sum(axis=0)
     
-    ax.plot(freqs, freq_true, 'k-', linewidth=2, label='Ground Truth', alpha=0.8)
-    ax.plot(freqs, freq_pred, 'b--', linewidth=2, label='Model', alpha=0.8)
-    ax.plot(freqs, freq_yam, 'r:', linewidth=2, label='Yamaguchi', alpha=0.8)
+    #ax.plot(freqs, freq_true, 'k-', linewidth=2, label='Ground Truth', alpha=0.8)
+    #ax.plot(freqs, freq_pred, 'b--', linewidth=2, label='Model', alpha=0.8)
+    #ax.plot(freqs, freq_yam, 'r:', linewidth=2, label='Yamaguchi', alpha=0.8)
     
     ax.set_xlabel('Frequency [Hz]', fontsize=11)
     ax.set_ylabel('Energy', fontsize=11)

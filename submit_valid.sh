@@ -17,6 +17,4 @@ python inference_and_compare.py \
   --depth /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/stats_grid/dpt.nc \
   --scaler /work/cmcc/ww3_cst-dev/work/ML/preprocessing/data/SS_2026/scalers/scalers.json \
     --batch_size 128 \
-    --num_samples 200  
-
-
+    --num_samples 200  --compute_yamaguchi
